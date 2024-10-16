@@ -1,4 +1,5 @@
 import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   HomeLayout,
   Landing,
@@ -13,12 +14,51 @@ import {
   Orders,
 } from "./pages";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <Landing />,
+      },
+      {
+        path: "products",
+        element: <Products />,
+      },
+      {
+        path: "products/:id",
+        element: <SingleProduct />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      { path: "about", element: <About /> },
+      {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
+      },
+    ],
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+]);
+
 const App = () => {
-  return (
-    <div className="flex items-center justify-center border border-red-500 bg-red-500">
-      <h1 className="text-3xl font-bold  text-white">Hello World</h1>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
