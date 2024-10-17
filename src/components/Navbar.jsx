@@ -23,11 +23,21 @@ const Navbar = () => {
     const newTheme = theme === winter ? dracula : winter;
     setTheme(newTheme);
   };
-
+  // This effect will run every time the theme state changes
   useEffect(() => {
+    // Set the data-theme attribute on the document element
+    // to the current theme state
     document.documentElement.setAttribute("data-theme", theme);
+    // Persist the theme state in local storage
     localStorage.setItem("theme", theme);
   }, [theme]);
+
+  // This dependency array ensures that the effect will
+  // only run when the theme state changes, and not on
+  // every render. If the dependency array were empty,
+  // the effect would run on every render. If the
+  // dependency array included other values, the effect
+  // would run every time one of those values changes.
 
   return (
     <nav className="bg-base-200">
