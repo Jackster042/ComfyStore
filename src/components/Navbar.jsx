@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IoSunnyOutline } from "react-icons/io5";
+import { IoMoonOutline } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 import NavLinks from "./NavLinks";
 
+const themes = {
+  winter: "winter",
+  dracula: "dracula",
+};
+
+const getThemeFromLocalStorage = () => {
+  return localStorage.getItem("theme") || themes.winter;
+};
+
 const Navbar = () => {
+  const [theme, setTheme] = useState(getThemeFromLocalStorage());
+
+  const handleTheme = () => {
+    const { winter, dracula } = themes;
+    const newTheme = theme === winter ? dracula : winter;
+    setTheme(newTheme);
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <nav className="bg-base-200">
       {/* import global css class */}
@@ -15,9 +38,9 @@ const Navbar = () => {
           {/* Title */}
           <NavLink
             to="/"
-            className="hidden lg:flex btn btn-primary text-3xl items-center"
+            className="hidden lg:flex btn btn-ghost text-3xl items-center"
           >
-            C
+            Comfy
           </NavLink>
           {/* DROPDOWN */}
           <div className="dropdown">
@@ -41,9 +64,16 @@ const Navbar = () => {
         {/* NAVBAR END */}
         <div className="navbar-end">
           {/* theme icons */}
-          <div className="btn btn-ghost btn-circle btn-md ml-4">
-            <IoSunnyOutline className="h-6 w-6" />
-          </div>
+          <label className="swap swap-rotate">
+            {/* this hidden checkbox controls the state */}
+            <input type="checkbox" onChange={handleTheme} />
+
+            {/* sun icon */}
+            <IoSunnyOutline className="swap-on h-6 w-6" />
+
+            {/* moon icon */}
+            <IoMoonOutline className="swap-off h-6 w-6" />
+          </label>
           {/* cart */}
           <NavLink to="/cart" className="btn btn-ghost btn-circle btn-md ml-4">
             <div className="indicator">
@@ -57,3 +87,13 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+// <div className="btn btn-ghost btn-circle btn-md ml-4">
+//   <IoMoonOutline className="h-6 w-6" />
+// </div>;
+
+{
+  /* <div className="btn btn-ghost btn-circle btn-md ml-4">
+              <IoSunnyOutline className="h-6 w-6" />
+            </div> */
+}
