@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SimpleSlider from "./SliderComponent";
 
 import hero1 from "../assets/hero1.webp";
 import hero2 from "../assets/hero2.webp";
@@ -13,7 +14,7 @@ const Hero = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
       {/* LEFT SIDE */}
       <div>
-        <h1 className="max-w-2xl text-4xl font-bold tracking-tight  sm:text-6xl ">
+        <h1 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-6xl ">
           We are changing the way people shop
         </h1>
         <p className="mt-8 max-w-xl text-lg leading-8">
@@ -28,6 +29,7 @@ const Hero = () => {
         </div>
       </div>
       {/* RIGHT SIDE */}
+      {/* <SimpleSlider /> */}
       {/* <div className="hidden  h-[28rem] lg:carousel carousel-center   p-4 space-x-4 bg-neutral rounded-box">
         {carouselImages.map((image, index) => {
           return (
@@ -40,6 +42,7 @@ const Hero = () => {
           );
         })}
       </div> */}
+
       <div className="hidden  h-[28rem] lg:carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
         <div id="slide1" className="carousel-item relative w-full">
           <img src={hero1} className="w-full rounded-box" />
