@@ -43,7 +43,7 @@ const Hero = () => {
         })}
       </div> */}
 
-      <div className="hidden  h-[28rem] lg:carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
+      <div className="hidden h-[28rem] lg:carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
         <div id="slide1" className="carousel-item relative w-full">
           <img src={hero1} className="w-full rounded-box" />
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
