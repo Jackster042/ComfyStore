@@ -18,12 +18,11 @@ const Products = () => {
   // console.log(meta);
 
   return (
-    <div>
-      {/* <h1>Products</h1> */}
+    <>
       <Filters />
       <ProductsContainer />
-      {/* <PaginationContainer /> */}
-    </div>
+      <PaginationContainer />
+    </>
   );
 };
 
