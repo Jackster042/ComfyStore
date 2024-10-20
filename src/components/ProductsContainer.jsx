@@ -10,7 +10,7 @@ import { BsFillGridFill, BsList } from "react-icons/bs";
 const ProductsContainer = () => {
   const { meta } = useLoaderData();
   const totalProducts = meta.pagination.total;
-  console.log(totalProducts);
+  // console.log(totalProducts);
 
   // STATE FOR TOGGLE BETWEEN GRID AND LIST
   const [layout, setLayout] = useState("grid");
