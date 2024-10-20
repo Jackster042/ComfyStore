@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useLoaderData, Link } from "react-router-dom";
-import { customFetch, formatPrice } from "../utils";
+import { customFetch, formatPrice, generateAmount } from "../utils";
 
 export const loader = async ({ params }) => {
   const response = await customFetch(`/products/${params.id}`);
@@ -73,6 +73,32 @@ const SingleProduct = () => {
             </div>
           </div>
           {/* AMOUNT */}
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <h4 className="text-md font-medium tracking-wider capitalize">
+                amount
+              </h4>
+            </label>
+            <select
+              value={amount}
+              onChange={handleAmount}
+              className="select select-secondary select-bordered select-md"
+            >
+              {/* <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3 </option> */}
+              {generateAmount(5)}
+            </select>
+          </div>
+          {/* CART BUTTON */}
+          <div className="mt-10">
+            <button
+              className="btn btn-secondary btn-md"
+              onClick={() => console.log(`${amount} of ${title} added to bag`)}
+            >
+              Add to bag
+            </button>
+          </div>
         </div>
       </div>
     </section>
