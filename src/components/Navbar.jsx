@@ -79,10 +79,10 @@ const Navbar = () => {
             <input type="checkbox" onChange={handleTheme} />
 
             {/* sun icon */}
+            <IoMoonOutline className="swap-off h-6 w-6" />
             <IoSunnyOutline className="swap-on h-6 w-6" />
 
             {/* moon icon */}
-            <IoMoonOutline className="swap-off h-6 w-6" />
           </label>
           {/* cart */}
           <NavLink to="/cart" className="btn btn-ghost btn-circle btn-md ml-4">
