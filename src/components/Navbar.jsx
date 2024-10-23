@@ -5,6 +5,7 @@ import { IoMoonOutline } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 import NavLinks from "./NavLinks";
+import { toast } from "react-toastify";
 
 const themes = {
   winter: "winter",
@@ -22,6 +23,7 @@ const Navbar = () => {
     const { winter, dracula } = themes;
     const newTheme = theme === winter ? dracula : winter;
     setTheme(newTheme);
+    toast.success("Theme Changed");
   };
   // This effect will run every time the theme state changes
   useEffect(() => {
