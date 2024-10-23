@@ -6,8 +6,12 @@ import PaginationContainer from "../components/PaginationContainer";
 import { useLoaderData, Link } from "react-router-dom";
 import { customFetch, formatPrice } from "../utils";
 
+const url = "/products";
+
 // export const loader = async () => {
 //   const response = await customFetch("/products");
+//   console.log(response);
+
 //   const products = response.data.data;
 //   const meta = response.data.meta;
 //   return { products, meta };
@@ -26,7 +30,7 @@ export const loader = async ({ request }) => {
 };
 
 const Products = () => {
-  const { products, meta } = useLoaderData();
+  // const { products, meta, params } = useLoaderData();
   // console.log(meta);
 
   return (
