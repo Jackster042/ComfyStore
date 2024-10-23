@@ -9,7 +9,7 @@ function Filters() {
   // const { meta } = useLoaderData();
   const { meta, params } = useLoaderData();
   // console.log(meta);
-  console.log(params);
+  // console.log(params);
 
   const { search, company, category, shipping, order, price } = params;
 
