@@ -1,43 +1,52 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+
+// ICONS
 import { IoSunnyOutline } from "react-icons/io5";
 import { IoMoonOutline } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
+
 import NavLinks from "./NavLinks";
-import { toast } from "react-toastify";
+import { toggleTheme } from "../features/user/userSlice";
 
-import { useSelector } from "react-redux";
+// const themes = {
+//   winter: "winter",
+//   dracula: "dracula",
+// };
 
-const themes = {
-  winter: "winter",
-  dracula: "dracula",
-};
-
-const getThemeFromLocalStorage = () => {
-  return localStorage.getItem("theme") || themes.winter;
-};
+// const getThemeFromLocalStorage = () => {
+//   return localStorage.getItem("theme") || themes.winter;
+// };
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(getThemeFromLocalStorage());
+  // const [theme, setTheme] = useState(getThemeFromLocalStorage());
 
   const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
   // console.log(numItemsInCart);
 
-  const handleTheme = () => {
-    const { winter, dracula } = themes;
-    const newTheme = theme === winter ? dracula : winter;
-    setTheme(newTheme);
-    toast.success("Theme Changed");
+  const dispatch = useDispatch();
+
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme());
   };
+
+  // const handleTheme = () => {
+  //   const { winter, dracula } = themes;
+  //   const newTheme = theme === winter ? dracula : winter;
+  //   setTheme(newTheme);
+  //   toast.success("Theme Changed");
+  // };
   // This effect will run every time the theme state changes
-  useEffect(() => {
-    // Set the data-theme attribute on the document element
-    // to the current theme state
-    document.documentElement.setAttribute("data-theme", theme);
-    // Persist the theme state in local storage
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  // useEffect(() => {
+  //   // Set the data-theme attribute on the document element
+  //   // to the current theme state
+  //   document.documentElement.setAttribute("data-theme", theme);
+  //   // Persist the theme state in local storage
+  //   localStorage.setItem("theme", theme);
+  // }, [theme]);
 
   // This dependency array ensures that the effect will
   // only run when the theme state changes, and not on
@@ -83,7 +92,7 @@ const Navbar = () => {
           {/* theme icons */}
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
-            <input type="checkbox" onChange={handleTheme} />
+            <input type="checkbox" onChange={handleToggleTheme} />
 
             {/* sun icon */}
             <IoMoonOutline className="swap-off h-6 w-6" />
@@ -95,6 +104,9 @@ const Navbar = () => {
           <NavLink to="/cart" className="btn btn-ghost btn-circle btn-md ml-4">
             <div className="indicator">
               <FaShoppingCart className="h-6 w-6" />
+              <span className="badge badge-sm badge-primary indicator-item">
+                {numItemsInCart}
+              </span>
             </div>
           </NavLink>
         </div>
