@@ -17,6 +17,13 @@ import { toast } from "react-toastify";
 //     return store;
 //   };
 
+//  DEMO USER
+
+const demoUser = {
+  identifier: "test@test.com",
+  password: "secret",
+};
+
 export const action =
   (store) =>
   async ({ request }) => {
@@ -40,6 +47,20 @@ export const action =
   };
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const loginAsGuestUser = async () => {
+    try {
+      const response = await customFetch.post("/auth/local", demoUser);
+      dispatch(loginUser(response.data));
+      toast.success("welcome guest user");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("guest user login error.please try later.");
+    }
+  };
   return (
     <section className="h-screen grid place-items-center">
       <Form
@@ -51,18 +72,24 @@ const Login = () => {
           type="email"
           label="email"
           name="identifier"
-          defaultValue="test@test.com"
+
+          // defaultValue="test@test.com"
         />
         <FormInput
           type="password"
           label="password"
           name="password"
-          defaultValue="secret"
+
+          // defaultValue="secret"
         />
         <div className="mt-4">
           <SubmitBtn text="login" className="btn btn-primary" />
         </div>
-        <button type="button" className="btn btn-secondary btn-block">
+        <button
+          type="button"
+          className="btn btn-secondary btn-block"
+          onClick={loginAsGuestUser}
+        >
           guest user
         </button>
         <p className="text-center">
