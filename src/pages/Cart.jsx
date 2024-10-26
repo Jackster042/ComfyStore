@@ -9,6 +9,8 @@ const Cart = () => {
   // const [user, setUser] = useState(null);
   const user = null;
   const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
+  // console.log(numItemsInCart);
+
   if (numItemsInCart === 0) {
     return <SectionTitle text="Your cart is empty" />;
   }

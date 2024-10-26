@@ -3541,7 +3541,7 @@ const userSlice = createSlice({
 
 export const { loginUser, logoutUser, toggleTheme } = userSlice.actions;
 
-export default userSlice.reducer;
+export default userSlice;
 ```
 
 Navbar.js

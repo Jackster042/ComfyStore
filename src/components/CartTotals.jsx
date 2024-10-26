@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import { formatPrice } from "../utils";
 
 const CartTotals = () => {
-  const { cartTotal, shipping, tax } = useSelector((state) => state.cartState);
+  const { cartTotal, shipping, tax, orderTotal } = useSelector(
+    (state) => state.cartState
+  );
   // console.log(cartTotal, shipping, tax);
 
   return (
@@ -27,9 +29,7 @@ const CartTotals = () => {
         {/* TOTAL */}
         <p className="mt-4 flex justify-between text-sm pb-2">
           <span className="font-bold">Order Total</span>
-          <span className="font-bold">
-            {formatPrice(cartTotal + shipping + tax)}
-          </span>
+          <span className="font-bold">{formatPrice(orderTotal)}</span>
         </p>
       </div>
     </div>

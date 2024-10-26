@@ -14,7 +14,7 @@ import { toggleTheme } from "../features/user/userSlice";
 
 // const themes = {
 //   winter: "winter",
-//   dracula: "dracula",
+//   dracula: "dracula",x`
 // };
 
 // const getThemeFromLocalStorage = () => {
@@ -24,13 +24,14 @@ import { toggleTheme } from "../features/user/userSlice";
 const Navbar = () => {
   // const [theme, setTheme] = useState(getThemeFromLocalStorage());
 
-  const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
   // console.log(numItemsInCart);
 
-  const dispatch = useDispatch();
+  const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
 
-  const handleToggleTheme = () => {
+  const dispatch = useDispatch();
+  const handleTheme = () => {
     dispatch(toggleTheme());
+    // toast.success("Theme Changed");
   };
 
   // const handleTheme = () => {
@@ -92,7 +93,7 @@ const Navbar = () => {
           {/* theme icons */}
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
-            <input type="checkbox" onChange={handleToggleTheme} />
+            <input type="checkbox" onChange={handleTheme} />
 
             {/* sun icon */}
             <IoMoonOutline className="swap-off h-6 w-6" />

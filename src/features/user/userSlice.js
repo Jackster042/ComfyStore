@@ -5,7 +5,6 @@ const themes = {
   winter: "winter",
   dracula: "dracula",
 };
-
 const getThemeFromLocalStorage = () => {
   const theme = localStorage.getItem("theme") || themes.winter;
   document.documentElement.setAttribute("data-theme", theme);
@@ -13,7 +12,7 @@ const getThemeFromLocalStorage = () => {
 };
 
 const initialState = {
-  user: { username: "nemanja042" },
+  user: { username: "coding addict" },
   theme: getThemeFromLocalStorage(),
 };
 
@@ -32,10 +31,10 @@ const userSlice = createSlice({
       state.theme = state.theme === dracula ? winter : dracula;
       document.documentElement.setAttribute("data-theme", state.theme);
       localStorage.setItem("theme", state.theme);
-      toast.success("Theme Changed");
     },
   },
 });
 
 export const { loginUser, logoutUser, toggleTheme } = userSlice.actions;
-export default userSlice;
+
+export default userSlice.reducer;
