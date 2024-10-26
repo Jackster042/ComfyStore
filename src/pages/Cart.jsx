@@ -7,7 +7,8 @@ import SectionTitle from "../components/SectionTitle";
 
 const Cart = () => {
   // const [user, setUser] = useState(null);
-  const user = null;
+  // const user = null;
+  const user = useSelector((state) => state.userState.user);
   const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
   // console.log(numItemsInCart);
 
