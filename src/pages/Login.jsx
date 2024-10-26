@@ -1,8 +1,43 @@
 import React from "react";
+import { customFetch } from "../utils";
+import { Form, Link, redirect, useNavigate } from "react-router-dom";
 
-import { Form, Link } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import SubmitBtn from "../components/SubmitBtn";
+
+import { useDispatch } from "react-redux";
+import { loginUser } from "../features/user/userSlice";
+import { toast } from "react-toastify";
+
+// TEST ACTION
+// export const action =
+//   (store) =>
+//   async ({ request }) => {
+//     console.log(store);
+//     return store;
+//   };
+
+export const action =
+  (store) =>
+  async ({ request }) => {
+    // const dispatch = useDispatch();
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+    // console.log(data);
+
+    try {
+      const response = await customFetch.post("/auth/local", data);
+      store.dispatch(loginUser(response.data));
+      toast.success("logged in successfully");
+      return redirect("/");
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.error?.message ||
+        "please double check your credentials";
+      toast.error(errorMessage);
+      return null;
+    }
+  };
 
 const Login = () => {
   return (
@@ -15,14 +50,14 @@ const Login = () => {
         <FormInput
           type="email"
           label="email"
-          name="email"
-          defaultValue="email"
+          name="identifier"
+          defaultValue="test@test.com"
         />
         <FormInput
           type="password"
           label="password"
           name="password"
-          defaultValue="password"
+          defaultValue="secret"
         />
         <div className="mt-4">
           <SubmitBtn text="login" className="btn btn-primary" />
