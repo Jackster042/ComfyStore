@@ -25,7 +25,6 @@ const Checkout = () => {
   if (numItemsInCart === 0) {
     return <SectionTitle text="Your cart is empty" />;
   }
-  s;
 
   return (
     <>
