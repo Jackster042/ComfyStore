@@ -32,7 +32,7 @@ const OrderList = () => {
 
               return (
                 <tr key={id}>
-                  <td>{name} lolol</td>
+                  <td>{name}</td>
                   <td>{address}</td>
                   <td>{numItemsInCart}</td>
                   <td>{orderTotal}</td>

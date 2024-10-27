@@ -10,6 +10,7 @@ import { customFetch } from "../utils";
 import OrderList from "../components/OrderList";
 import PaginationContainer from "../components/PaginationContainer";
 import SectionTitle from "../components/SectionTitle";
+import ComplexPaginationContainer from "../components/ComplexPaginationContainer";
 
 export const loader =
   (store) =>
@@ -60,7 +61,8 @@ const Orders = () => {
     <div>
       <SectionTitle text="Your Orders" />
       <OrderList />
-      <PaginationContainer />
+      {/* <PaginationContainer /> */}
+      <ComplexPaginationContainer />
     </div>
   );
 };
