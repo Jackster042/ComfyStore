@@ -50,9 +50,17 @@ export const loader =
   };
 
 const Orders = () => {
+  const { meta } = useLoaderData();
+  console.log(meta);
+  // if (meta.pagination.total < 1) {
+  //   return <SectionTitle text="Please make an order" />;
+  // }
+
   return (
     <div>
+      <SectionTitle text="Your Orders" />
       <OrderList />
+      <PaginationContainer />
     </div>
   );
 };
