@@ -18,7 +18,6 @@ import { toast } from "react-toastify";
 //   };
 
 //  DEMO USER
-
 const demoUser = {
   identifier: "test@test.com",
   password: "secret",
