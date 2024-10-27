@@ -1,11 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
+// const dynamicShipping = () => {
+//   localStorage.getItem("cart");
+
+//   if (state.cartTotal > 0) {
+//     state.shipping = 500;
+//   } else {
+//     state.shipping = 0;
+//   }
+// };
+// const dynamicShipping = (state) => {
+//   localStorage.getItem("cart");
+//   if (state.cartTotal === 0) {
+//     state.shipping = 0;
+//   } else {
+//     state.shipping = 500;
+//   }
+// };
+
 const defaultState = {
   cartItems: [],
   numItemsInCart: 0,
   cartTotal: 0,
   shipping: 500,
+  // shipping: dynamicShipping(),
+  // shipping: test(),
   tax: 0,
   orderTotal: 0,
 };
@@ -66,6 +86,7 @@ const cartSlice = createSlice({
     calculateTotals: (state) => {
       state.tax = 0.1 * state.cartTotal;
       state.orderTotal = state.cartTotal + state.shipping + state.tax;
+
       //   console.log(state.orderTotal);
 
       localStorage.setItem("cart", JSON.stringify(state));

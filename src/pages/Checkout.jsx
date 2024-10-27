@@ -19,10 +19,13 @@ export const loader = (store) => async () => {
 
 const Checkout = () => {
   const cartTotal = useSelector((state) => state.cartState.cartTotal);
-  console.log(cartTotal);
-  if (cartTotal.length === 0) {
+  const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
+  // console.log(cartTotal);
+
+  if (numItemsInCart === 0) {
     return <SectionTitle text="Your cart is empty" />;
   }
+  s;
 
   return (
     <>

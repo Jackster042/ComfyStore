@@ -7,6 +7,10 @@ const CartTotals = () => {
     (state) => state.cartState
   );
   // console.log(cartTotal, shipping, tax);
+  // if (cartTotal.length === 0) {
+  //   state.shipping = 0;
+  //   return null;
+  // }
 
   return (
     <div className="card bg-base-300">
