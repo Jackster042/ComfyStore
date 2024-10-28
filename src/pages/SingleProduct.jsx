@@ -8,16 +8,20 @@ import { addItem } from "../features/cart/cartSlice";
 // import { QueryClient } from "@tanstack/react-query";
 
 const singleProductQuery = (id) => {
-  queryKey: ["singleProduct", id],
-  queryFn: () => customFetch(`/products/${id}`),
-}
+  return {
+    queryKey: ["singleProduct", id],
+    queryFn: () => customFetch.get(`/products/${id}`),
+  };
+};
 
-export const loader = (queryClient) => async ({ params }) => {
-  // const response = await customFetch(`/products/${params.id}`);
-  const response = await customFetch.ensureQueryData(singleProductQuery(params.id))
-  // console.log(response);
-  return { product: response.data.data };
-});
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    const response = await queryClient.ensureQueryData(
+      singleProductQuery(params.id)
+    );
+    return { product: response.data.data };
+  };
 
 const SingleProduct = () => {
   const { product } = useLoaderData();
