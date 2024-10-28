@@ -12,8 +12,24 @@ import PaginationContainer from "../components/PaginationContainer";
 import SectionTitle from "../components/SectionTitle";
 import ComplexPaginationContainer from "../components/ComplexPaginationContainer";
 
+export const ordersQuery = (params, user) => {
+  return {
+    queryKey: [
+      "orders",
+      user.username,
+      params.page ? parseInt(params.page) : 1,
+    ],
+    queryFn: () =>
+      customFetch.get("/orders", {
+        params,
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }),
+  };
+};
 export const loader =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const user = store.getState().userState.user;
 
@@ -27,12 +43,16 @@ export const loader =
     ]);
 
     try {
-      const response = await customFetch.get("/orders", {
-        params,
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      // const response = await customFetch.get("/orders", {
+      //   params,
+      //   headers: {
+      //     Authorization: `Bearer ${user.token}`,
+      //   },
+      // });
+      const response = await queryClient.ensureQueryData(
+        ordersQuery(params, user)
+      );
+
       const orders = response.data.data;
       const meta = response.data.meta;
       // console.log(response);
@@ -61,7 +81,6 @@ const Orders = () => {
     <div>
       <SectionTitle text="Your Orders" />
       <OrderList />
-      {/* <PaginationContainer /> */}
       <ComplexPaginationContainer />
     </div>
   );

@@ -6,7 +6,7 @@ import SubmitBtn from "./SubmitBtn";
 import FormInput from "./FormInput";
 
 export const action =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const formData = await request(formData);
     const { name, address } = Object.fromEntries(formData);
@@ -33,6 +33,9 @@ export const action =
           },
         }
       );
+      // REMOVE QUERY
+      queryClient.removeQueries(["orders"]);
+      // REST OF CODE
       store.dispatch(clearCart());
       toast.success("order placed successfully");
       // return redirect(`/orders/${response.data.order._id}`);
