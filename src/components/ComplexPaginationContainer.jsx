@@ -8,7 +8,7 @@ const ComplexPaginationContainer = () => {
   const navigate = useNavigate();
 
   const handlePageChange = (pageNumber) => {
-    const searchParams = new URL.searchParams(search);
+    const searchParams = new URLSearchParams(search);
     searchParams.set("page", pageNumber);
     navigate(`${pathname}?${searchParams.toString()}`);
   };
@@ -27,7 +27,7 @@ const ComplexPaginationContainer = () => {
     );
   };
 
-  const renderPageNumber = () => {
+  const renderPageButtons = () => {
     const pageButtons = [];
     // FIRST BUTTON
     pageButtons.push(addPageButton({ pageNumber: 1, activeClass: page === 1 }));
@@ -61,11 +61,36 @@ const ComplexPaginationContainer = () => {
     return pageButtons;
   };
 
-  if (pageCount < 2) return null;
+  // if (pageCount < 2) return null;
 
   return (
-    <div>
-      <h4>ComplexPaginationContainer</h4>
+    <div className="mt-16 flex justify-end">
+      <div className="join">
+        {/* PREV BUTTON */}
+        <button
+          className="btn btn-xs sm:btn-md join-item"
+          onClick={() => {
+            let prevPage = page - 1;
+            if (prevPage < 1) prevPage = pageCount;
+            handlePageChange(prevPage);
+          }}
+        >
+          Prev
+        </button>
+        {/* PAGE NUMBER */}
+        {renderPageButtons()}
+        {/* NEXT BUTTON */}
+        <button
+          className="btn btn-xs sm:btn-md join-item"
+          onClick={() => {
+            let nextPage = page + 1;
+            if (nextPage > pageCount) nextPage = 1;
+            handlePageChange(nextPage);
+          }}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
