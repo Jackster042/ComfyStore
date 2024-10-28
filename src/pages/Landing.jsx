@@ -5,9 +5,19 @@ import FeaturedProducts from "../components/FeaturedProducts";
 
 const url = "/products?featured=true";
 
-export const loader = async () => {
-  const response = await customFetch.get(url);
+const featuredProductsQuery = {
+  queryKey: ["featuredProducts"],
+  queryFn: () => customFetch(url),
+};
+
+export const loader = (queryClient) => async () => {
+  // SWAP THIS FOR QUERY CLIENT
+
+  // const response = await customFetch.get(url);
+  const response = await queryClient.ensureQueryData(featuredProductsQuery);
+
   // console.log(response);
+
   const products = response.data.data;
   return { products };
 };
