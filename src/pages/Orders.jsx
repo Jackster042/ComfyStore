@@ -35,7 +35,7 @@ export const loader =
       });
       const orders = response.data.data;
       const meta = response.data.meta;
-      console.log(response);
+      // console.log(response);
       return { orders, meta };
     } catch (error) {
       console.log(error);
